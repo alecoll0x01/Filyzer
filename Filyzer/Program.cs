@@ -32,6 +32,7 @@ public class Program
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.UseMiddleware<ApiKeyMiddleware>();
+        app.UseMiddleware<RoleAuthorizationMiddleware>();
         app.MapControllers();
 
         using (var scope = app.Services.CreateScope())
