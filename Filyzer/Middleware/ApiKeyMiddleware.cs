@@ -1,4 +1,6 @@
-﻿namespace Filyzer.Middleware
+﻿using Filyzer.Domain.Interfaces;
+
+namespace Filyzer.Middleware
 {
     public class ApiKeyMiddleware
     {
@@ -17,7 +19,7 @@
                 return;
             }
 
-            var user = await userRepository.GetByApiKeyAsync(apiKey);
+            Domain.Entities.User user = await userRepository.GetByApiKeyAsync(apiKey);
             if (user == null)
             {
                 context.Response.StatusCode = 401;
