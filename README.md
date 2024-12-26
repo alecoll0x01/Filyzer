@@ -6,11 +6,7 @@ Uma API robusta para análise de arquivos, integrada com múltiplos serviços de
 
 - Autenticação via API Key
 - CRUD completo de usuários
-- Upload e análise de arquivos
-- Detecção de códigos maliciosos
-- Integração com múltiplos serviços de análise
 - Rastreamento de uso da API por usuário
-- Armazenamento de histórico de análises
 
 ## 🛠️ Tecnologias Utilizadas
 
