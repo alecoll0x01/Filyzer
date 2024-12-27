@@ -16,8 +16,10 @@ namespace Filyzer.Domain.Entities
         public int ApiCallsCount { get; private set; }
         public DateTime CreatedAt { get; private set; }
 
+        public int DailyRequestLimit { get; set; }
+
         private User() { }
-        public User(string email, UserRole role = UserRole.Basic)
+        public User(string email, UserRole role = UserRole.Basic, int dailyRequestLimit = 0)
         {
             Id = Guid.NewGuid();
             Email = email;
@@ -26,6 +28,7 @@ namespace Filyzer.Domain.Entities
             Role = role;
             CreatedAt = DateTime.UtcNow;
             ApiCallsCount = 0;
+            DailyRequestLimit = dailyRequestLimit;
         }
 
         public void UpdateRole(UserRole newRole)
@@ -33,14 +36,26 @@ namespace Filyzer.Domain.Entities
             Role = newRole;
         }
 
-        private string GetGenerateApiKey()
+        public string GetGenerateApiKey()
         {
-            return Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            string apikey = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            ApiKey = apikey;
+            return apikey;
         }
 
         public void IncrementApiCalls()
         {
             ApiCallsCount++;
+        }
+
+        internal void UpdateEmail(string email)
+        {
+            Email = email;
+        }
+
+        internal void UpdateDailyRequestLimit(int value)
+        {
+            DailyRequestLimit += value;
         }
     }
 }
