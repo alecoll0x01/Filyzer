@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=testeste
+      - POSTGRES_DB=filyzer
+    ports:
+      - "5432:5432"
+    networks:
+      - mynetwork
+    tmpfs:
+      - /var/lib/postgresql/data
+
+networks:
+  mynetwork:
+    driver: bridge
